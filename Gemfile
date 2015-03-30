@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Gemfile for RollingRead - MJF - Spring 2015
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -43,3 +45,19 @@ group :development, :test do
   gem 'spring'
 end
 
+
+# Per Prof.Stolley
+
+group :development do
+  # Some fancypants stuff for rails console
+  gem 'brice'
+  gem 'hirb'
+end
+
+gem 'haml-rails', '~> 0.8'
+
+
+# From 'https://github.com/rroblak/seed_dump'
+# '"Seed dump" allows you to create seed data files from the existing data in your database.'
+
+gem 'seed_dump'
