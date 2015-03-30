@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Short source:
+  = @source.short_source
+%p
+  %b Source details:
+  = @source.source_details
+%p
+  %b Dummy:
+  = @source.dummy
+%p
+  %b Course:
+  = @source.course
+
+= link_to 'Edit', edit_source_path(@source)
+\|
+= link_to 'Back', sources_path

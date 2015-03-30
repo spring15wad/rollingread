@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  short_semester: MyString
+  full_semester: MyText
+  start_date: 2015-03-29
+  end_date: 2015-03-29
+
+two:
+  short_semester: MyString
+  full_semester: MyText
+  start_date: 2015-03-29
+  end_date: 2015-03-29

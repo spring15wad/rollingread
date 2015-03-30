@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  short_assignment: MyString
+  assignment_details: MyText
+  url: MyString
+  due_date: 2015-03-29
+  completed: 2015-03-29
+  source_id: 
+
+two:
+  short_assignment: MyString
+  assignment_details: MyText
+  url: MyString
+  due_date: 2015-03-29
+  completed: 2015-03-29
+  source_id: 
