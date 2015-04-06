@@ -11,8 +11,8 @@
   = @source.dummy
 %p
   %b Course:
-  = @source.course
+  = @source.course.full_course
 
-= link_to 'Edit', edit_source_path(@source)
+%p= link_to 'Edit', edit_source_path(@source)
 \|
-= link_to 'Back', sources_path
+%p= link_to 'Back', sources_path

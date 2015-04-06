@@ -3,12 +3,12 @@
 %table
   %thead
     %tr
+      %th Source
       %th Short assignment
       %th Assignment details
       %th Url
       %th Due date
       %th Completed
-      %th Source
       %th
       %th
       %th
@@ -16,16 +16,18 @@
   %tbody
     - @assignments.each do |assignment|
       %tr
+        %td= assignment.source.short_source
         %td= assignment.short_assignment
         %td= assignment.assignment_details
         %td= assignment.url
         %td= assignment.due_date
         %td= assignment.completed
-        %td= assignment.source
         %td= link_to 'Show', assignment
         %td= link_to 'Edit', edit_assignment_path(assignment)
         %td= link_to 'Destroy', assignment, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Assignment', new_assignment_path
+%p= link_to 'New Assignment', new_assignment_path
+
+= render 'shared/nav_footer'

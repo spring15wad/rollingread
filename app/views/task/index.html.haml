@@ -1,2 +1,17 @@
-%h1 Task#index
-%p Find me in app/views/task/index.html.haml
+%h2.tasklist RollingRead &ndash; Tasklist
+
+- @grouped_assignments.each do |g_date, grouped|
+  %article.tasklist
+    %h3.tasklist= g_date
+    - grouped.each do |g_assignment|
+      %section.tasklist
+        %p.tasklist#course= g_assignment.source.course.short_course
+        %p.tasklist#source= g_assignment.source.short_source
+        %p.tasklist#assignment= g_assignment.url.blank? ? g_assignment.short_assignment : link_to( g_assignment.short_assignment , g_assignment.url )
+        %p.tasklist#completed
+          = label_tag('Completed') 
+          = check_box_tag('completed', value = "true", checked = g_assignment.completed, disabled: true )
+
+= render 'shared/nav_footer'
+
+

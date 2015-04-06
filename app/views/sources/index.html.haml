@@ -3,10 +3,10 @@
 %table
   %thead
     %tr
+      %th Course
       %th Short source
       %th Source details
       %th Dummy
-      %th Course
       %th
       %th
       %th
@@ -14,14 +14,16 @@
   %tbody
     - @sources.each do |source|
       %tr
+        %td= source.course.short_course
         %td= source.short_source
         %td= source.source_details
         %td= source.dummy
-        %td= source.course
         %td= link_to 'Show', source
         %td= link_to 'Edit', edit_source_path(source)
         %td= link_to 'Destroy', source, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Source', new_source_path
+%p= link_to 'New Source', new_source_path
+
+= render 'shared/nav_footer'

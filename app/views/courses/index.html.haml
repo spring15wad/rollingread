@@ -3,11 +3,11 @@
 %table
   %thead
     %tr
+      %th Semester
       %th Course number
       %th Short course
       %th Full course
       %th Meet days
-      %th Semester
       %th
       %th
       %th
@@ -15,15 +15,19 @@
   %tbody
     - @courses.each do |course|
       %tr
+        %td= course.semester.short_semester
         %td= course.course_number
         %td= course.short_course
         %td= course.full_course
         %td= course.meet_days
-        %td= course.semester
         %td= link_to 'Show', course
         %td= link_to 'Edit', edit_course_path(course)
         %td= link_to 'Destroy', course, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Course', new_course_path
+%p= link_to 'New Course', new_course_path
+
+= render 'shared/nav_footer'
+
+

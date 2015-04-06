@@ -7,6 +7,8 @@
           %li= msg
 
   .field
+    = f.collection_select :source_id, Source.order('short_source'), :id, :short_source, prompt: true
+  .field
     = f.label :short_assignment
     = f.text_field :short_assignment
   .field
@@ -20,9 +22,6 @@
     = f.date_select :due_date
   .field
     = f.label :completed
-    = f.date_select :completed
-  .field
-    = f.label :source
-    = f.text_field :source
+    = f.check_box :completed
   .actions
     = f.submit 'Save'
