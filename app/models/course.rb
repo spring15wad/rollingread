@@ -3,7 +3,10 @@ class Course < ActiveRecord::Base
   has_many :sources
   has_many :assignments
 
-  validates :course_number, :meet_days, :semester_id, presence: true
+  serialize :meet_days
+  serialize :all_days, JSON
+
+  validates :course_number, :semester_id, presence: true
   validates :course_number, format: { with: /\A\D\D\D\d\d\d\Z/, message: "course number should be “three [A-Z] + three [0-9]”" }
 
 

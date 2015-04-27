@@ -5,6 +5,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :short_course
       t.text :full_course
       t.integer :meet_days
+      t.date :all_days
       t.belongs_to :semester, index: true
 
       t.timestamps null: false
