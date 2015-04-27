@@ -61,3 +61,13 @@ gem 'haml-rails', '~> 0.8'
 # '"Seed dump" allows you to create seed data files from the existing data in your database.'
 
 gem 'seed_dump'
+
+# To support Heroku
+
+group :development, :test do
+  gem "sqlite3"
+end
+
+group :production do
+  gem "pg"
+end
