@@ -71,3 +71,9 @@ end
 group :production do
   gem "pg"
 end
+
+# Use OmniAuth for user authentication
+gem 'omniauth'
+# Use the Twitter strategy so that users log in with Twitter accounts
+gem 'omniauth-twitter'
+
