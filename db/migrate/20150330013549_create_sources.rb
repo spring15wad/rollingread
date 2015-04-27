@@ -3,7 +3,7 @@ class CreateSources < ActiveRecord::Migration
     create_table :sources do |t|
       t.string :short_source
       t.text :source_details
-      t.boolean :dummy
+      t.boolean :many_assignments
       t.belongs_to :course, index: true
 
       t.timestamps null: false

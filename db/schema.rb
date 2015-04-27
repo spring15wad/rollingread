@@ -16,15 +16,15 @@ ActiveRecord::Schema.define(version: 20150330013600) do
   create_table "assignments", force: :cascade do |t|
     t.string   "short_assignment"
     t.text     "assignment_details"
-    t.string   "url"
     t.date     "due_date"
     t.date     "completed"
     t.integer  "source_id"
+    t.integer  "course_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
-  add_index "assignments", ["source_id"], name: "index_assignments_on_source_id"
+  add_index "assignments", ["course_id"], name: "index_assignments_on_course_id"
 
   create_table "courses", force: :cascade do |t|
     t.string   "course_number"
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 20150330013600) do
   create_table "sources", force: :cascade do |t|
     t.string   "short_source"
     t.text     "source_details"
-    t.boolean  "dummy"
+    t.boolean  "many_assignments"
     t.integer  "course_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "sources", ["course_id"], name: "index_sources_on_course_id"
