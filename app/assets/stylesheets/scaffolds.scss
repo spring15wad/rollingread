@@ -2,20 +2,25 @@ body {
   background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 0.8125em;
+  line-height: 1.1250em;
 }
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 0.8125em;
+  line-height: 1.1250em;
 }
+
+p.tasklist {
+  padding: 0.3825em;
+}
+
 
 pre {
   background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
+  padding: 0.6250em;
+  font-size: 0.6825px;
 }
 
 a {
@@ -31,7 +36,7 @@ a {
 
 div {
   &.field, &.actions {
-    margin-bottom: 10px;
+    margin-bottom: 0.6250em;
   }
 }
 
