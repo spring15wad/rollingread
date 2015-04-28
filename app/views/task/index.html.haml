@@ -5,9 +5,9 @@
     %h3.tasklist= g_date
     - grouped.each do |g_assignment|
       %section.tasklist
-        %p.tasklist#course= g_assignment.source.course.short_course
+        %p.tasklist#course= g_assignment.course.short_course
         %p.tasklist#source= g_assignment.source.short_source
-        %p.tasklist#assignment= g_assignment.url.blank? ? g_assignment.short_assignment : link_to( g_assignment.short_assignment , g_assignment.url )
+        %p.tasklist#assignment= g_assignment.short_assignment
         %p.tasklist#completed
           = label_tag('Completed') 
           = check_box_tag('completed', value = "true", checked = g_assignment.completed, disabled: true )
