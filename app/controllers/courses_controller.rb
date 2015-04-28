@@ -38,6 +38,8 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    @semester = Semester.find(@course.semester_id)
+    @course.all_days = every_meet_day(@course.meet_days,@semester.start_date,@semester.end_date)
     if @course.update(course_params)
       redirect_to @course, notice: 'Course was successfully updated.'
     else
@@ -65,4 +67,30 @@ class CoursesController < ApplicationController
     def course_params
       params.require(:course).permit(:course_number, :short_course, :full_course, :meet_days, :semester_id)
     end
+
+    def every_meet_day(meet_days,start_date,end_date)
+
+      all_days = ['']
+      i = 0
+
+      meet_days.each do | this_day |
+
+        loop_date = start_date
+
+        while loop_date.wday < this_day
+          loop_date = Date.jd(loop_date.jd + 1)
+        end
+
+        while loop_date < end_date
+          all_days[i] = loop_date
+          loop_date = Date.jd(loop_date.jd + 7)
+          i = i + 1
+        end
+      end
+      return all_days.sort
+    end
+
+
+
+
 end

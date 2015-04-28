@@ -5,8 +5,8 @@ Semester.create!([
   {short_semester: "S15", full_semester: "Spring 15", start_date: "2015-01-12", end_date: "2015-05-02"}
 ])
 Course.create!([
-  {course_number: "COM531", short_course: "Web Apps", full_course: "Web Application Development", meet_days: "", all_days: "", semester_id: 1},
-  {course_number: "COM580", short_course: "Game Design", full_course: "Fundamentals of Game Design", meet_days: "", all_days: "", semester_id: 1}
+  {course_number: "COM531", short_course: "Web Apps", full_course: "Web Application Development", meet_days: %w( 2 ), all_days: "", semester_id: 1},
+  {course_number: "COM580", short_course: "Game Design", full_course: "Fundamentals of Game Design", meet_days: %w( 1 3 ) , all_days: "", semester_id: 1}
 ])
 Source.create!([
   {short_source: "Challenges…", source_details: "\"Challenges for game designers\". Brathwaite, Brenda, and Ian Schreiber.", many_assignments: true, course_id: 2},

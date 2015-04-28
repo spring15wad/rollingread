@@ -19,6 +19,9 @@
     = f.text_area :full_course
   .field
     = f.label :meet_days
-    = f.number_field :meet_days
+    - @course.meet_days.each do |meet_days|
+      = f.fields_for :meet_days[] do |meet_days_fields|
+        = meet_days_fields.number_field[]
+    end
   .actions
     = f.submit 'Save'

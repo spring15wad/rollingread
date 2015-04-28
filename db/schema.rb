@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20150330013600) do
     t.string   "course_number"
     t.string   "short_course"
     t.text     "full_course"
-    t.integer  "meet_days"
-    t.date     "all_days"
+    t.text     "meet_days"
+    t.text     "all_days"
     t.integer  "semester_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
