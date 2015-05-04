@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+
+  root 'task#index', as: 'task'
+
   get 'task/index'
+
+#  get '/flipless/:course_id', to: 'assignments#flipless',  as: 'assignment_for_course', defaults: { flip: true }
+  get '/flipless/:course_id', to: 'assignments#flipless',  as: 'assignment_for_course'
 
   resources :assignments
 
@@ -11,9 +17,6 @@ Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  root 'task#index', as: 'task'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

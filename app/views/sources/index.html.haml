@@ -6,7 +6,8 @@
       %th Course
       %th Short source
       %th Source details
-      %th Dummy
+      %th Many assigns?
+      %th
       %th
       %th
       %th
@@ -17,7 +18,8 @@
         %td= source.course.short_course
         %td= source.short_source
         %td= source.source_details
-        %td= source.dummy
+        %td= source.many_assignments
+        %td= link_to 'Add Assigns', assignment_for_course_path(course_id: source.course_id, source_id: source.id, flip: true)
         %td= link_to 'Show', source
         %td= link_to 'Edit', edit_source_path(source)
         %td= link_to 'Destroy', source, :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -17,6 +17,19 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.new
   end
 
+  # GET /flipless/:course_id
+  def flipless
+    if Source.where(short_source: 'single_use').empty?
+      @single_use_source = Source.new(short_source: 'single_use', many_assignments: false)
+      @single_use_source.save
+    end
+
+    @assignment = Assignment.new
+    @assignment.course_id = params[:course_id]
+    @course = Course.find(params[:course_id])
+#    @course = Course.where(id: params[:course_id]).take
+  end
+
   # GET /assignments/1/edit
   def edit
   end
@@ -26,28 +39,20 @@ class AssignmentsController < ApplicationController
   def create
     @assignment = Assignment.new(assignment_params)
 
-    respond_to do |format|
-      if @assignment.save
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully created.' }
-        format.json { render :show, status: :created, location: @assignment }
-      else
-        format.html { render :new }
-        format.json { render json: @assignment.errors, status: :unprocessable_entity }
-      end
+    if @assignment.save
+      redirect_to @assignment, notice: 'Assignment was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /assignments/1
   # PATCH/PUT /assignments/1.json
   def update
-    respond_to do |format|
-      if @assignment.update(assignment_params)
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @assignment }
-      else
-        format.html { render :edit }
-        format.json { render json: @assignment.errors, status: :unprocessable_entity }
-      end
+    if @assignment.update(assignment_params)
+      redirect_to @assignment, notice: 'Assignment was successfully updated.'
+    else
+      render :edit
     end
   end
 

@@ -1,0 +1,30 @@
+%h1 Create your course assignments
+
+%table
+  %thead
+    %tr
+      %th In semester
+      %th Course number
+      %th Course abbrev.
+      %th Full title
+      %th Meets on
+      
+  %tbody
+    %tr
+      %td= @course.semester.short_semester
+      %td= @course.course_number
+      %td= @course.short_course
+      %td= @course.full_course
+      %td
+        - if @course.meet_days.blank?
+          None
+        - else      
+          - @course.meet_days.each do |mday|
+            Date::DAYNAMES[mday]
+
+
+
+
+= render 'flipform'
+
+= link_to 'Back', assignments_path
