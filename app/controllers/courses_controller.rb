@@ -45,20 +45,27 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1.json
   def update
     @semester = Semester.find(course_params[:semester_id])
-    @course = Course.find(course_params[:course]) do |c|
-      c.course_number = course_params[:course_number]
-      c.short_course = course_params[:short_course]
-      c.full_course = course_params[:full_course]
-      c.meet_days = course_params[:meet_days]
-      c.all_days = every_meet_day(c.meet_days,@semester.start_date,@semester.end_date)
-      c.semester_id = course_params[:semester_id]
-    end
+
+    @course.all_days = every_meet_day(course_params[:meet_days],@semester.start_date,@semester.end_date)
 
     if @course.update(course_params)
       redirect_to @course, notice: 'Course was successfully updated.'
     else
       render :edit
     end
+
+#    if @course.update(course_params) do |c|
+#        c.course_number = course_params[:course_number]
+#        c.short_course = course_params[:short_course]
+#        c.full_course = course_params[:full_course]
+#        c.meet_days = course_params[:meet_days]
+#        c.all_days = every_meet_day(c.meet_days,@semester.start_date,@semester.end_date)
+#        c.semester_id = course_params[:semester_id]
+#      end
+#      redirect_to @course, notice: 'Course was successfully updated.'
+#    else
+#      render :edit
+#    end
   end
 
   # DELETE /courses/1
@@ -79,7 +86,7 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:course_number, :short_course, :full_course, :semester_id, meet_days: [])
+      params.require(:course).permit(:id, :course_number, :short_course, :full_course, :semester_id, meet_days: [])
     end
 
     def every_meet_day(meet_days,start_date,end_date)
