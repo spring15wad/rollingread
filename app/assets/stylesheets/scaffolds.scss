@@ -99,3 +99,8 @@ table  {
   border-spacing: .875em;
   border-collapse: separate;
 }
+
+@media screen and (min-width: 3em)
+{
+float: right;
+}
