@@ -2,13 +2,11 @@ Rails.application.routes.draw do
 
   root 'task#index', as: 'task'
 
-  get 'task/index'
+  get '/task/cascade', to: 'task#cascade', as: 'cascade'
 
   get '/flipless/:course_id', to: 'assignments#flipless',  as: 'assignment_for_course'
 
-  get '/auth/:provider', to: lambda{|env| [404, {}, ["Not Found"]]}, as: 'login'
-  get '/auth/:provider/callback', to: 'sessions#create'
-  get '/logout', to: 'sessions#destroy', as: 'logout'
+  get 'courses/new/:semester_id', to: 'courses#new', as: 'course_in_semester'
 
   resources :assignments
 
@@ -19,6 +17,12 @@ Rails.application.routes.draw do
   resources :semesters
 
   resources :users
+
+  resources :task
+
+  get '/auth/:provider', to: lambda{|env| [404, {}, ["Not Found"]]}, as: 'login'
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy', as: 'logout'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

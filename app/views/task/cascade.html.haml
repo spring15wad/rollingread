@@ -1,0 +1,35 @@
+%h1 RollingRead &ndash; Cascading contents
+
+.semesters
+  - @ordered_semesters.each do |semester|
+    %span.smurf Abbrev.
+    %span.frums= semester.short_semester
+    %span.smurf Full semester
+    %span.frums= semester.full_semester
+    %span.smurf Start date
+    %span.frums= semester.start_date
+    %span.smurf End date
+    %span.frums= semester.end_date
+    = link_to 'Add course', course_in_semester_path(semester.id)
+    .courses
+      - @these_courses_hash = @grouped_courses.select{|s,c| s == semester.id }
+      - @these_courses_hash.each_value{|these_courses| @these_courses_array = these_courses}
+      - @these_courses_array.each do |curse|
+        %span.smurf Course Number
+        %span.frums= curse.course_number
+        %span.smurf Abbrev.
+        %span.frums= curse.short_course
+        %span.smurf Course title
+        %span.frums= curse.full_course
+        .sources
+          - @these_sources_hash = @grouped_sources.select{|s,c| s == curse.id }
+          - @these_sources_hash.each_value{|these_sources| @these_sources_array = these_sources}
+          - @these_sources_array.each do |source|
+            %span.smurf  Abbrev.
+            %span.frums= source.short_source
+            %span.smurf  Source details
+            %span.frums= source.source_details
+            %p
+
+
+= link_to 'Go home', '/'
