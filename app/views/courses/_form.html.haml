@@ -6,8 +6,9 @@
         - @course.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.collection_select :semester_id, Semester.order('start_date'), :id, :short_semester, prompt: true
+  - if !params[:semester_id]
+    .field
+      = f.collection_select :semester_id, Semester.order('start_date'), :id, :short_semester, prompt: true
   .field
     = f.label :course_number
     = f.text_field :course_number
