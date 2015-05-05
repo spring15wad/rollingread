@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+
+  # You can have the root of your site routed with "root"
+  root 'task#index', as: 'task'
+
   get 'task/index'
+
+  get '/auth/:provider', to: lambda{|env| [404, {}, ["Not Found"]]}, as: 'login'
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy', as: 'logout'
 
   resources :assignments
 
@@ -12,8 +20,6 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  root 'task#index', as: 'task'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
