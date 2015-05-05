@@ -7,9 +7,6 @@
   %b Assignment details:
   = @assignment.assignment_details
 %p
-  %b Url:
-  = @assignment.url
-%p
   %b Due date:
   = @assignment.due_date
 %p
@@ -17,7 +14,12 @@
   = @assignment.completed
 %p
   %b Source:
-  = @assignment.source.source_details
+  = @assignment.source_id
+%p
+  %b Course:
+  = @assignment.course_id
+
+
 
 = link_to 'Edit', edit_assignment_path(@assignment)
 \|

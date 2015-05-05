@@ -16,6 +16,15 @@
   %b Semester:
   = @course.semester.full_semester
 
+- if !@course.all_days.empty?
+  %ul
+  - @course.all_days.each do |eday|
+    %li
+      = eday.to_s
+      \ – 
+      = Date::DAYNAMES[Date.parse(eday).cwday]
+
+
 %p= link_to 'Edit', edit_course_path(@course)
 \|
 %p= link_to 'Back', courses_path

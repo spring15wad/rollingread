@@ -45,7 +45,6 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1.json
   def update
     @semester = Semester.find(course_params[:semester_id])
-
     @course.all_days = every_meet_day(course_params[:meet_days],@semester.start_date,@semester.end_date)
 
     if @course.update(course_params)
@@ -53,19 +52,6 @@ class CoursesController < ApplicationController
     else
       render :edit
     end
-
-#    if @course.update(course_params) do |c|
-#        c.course_number = course_params[:course_number]
-#        c.short_course = course_params[:short_course]
-#        c.full_course = course_params[:full_course]
-#        c.meet_days = course_params[:meet_days]
-#        c.all_days = every_meet_day(c.meet_days,@semester.start_date,@semester.end_date)
-#        c.semester_id = course_params[:semester_id]
-#      end
-#      redirect_to @course, notice: 'Course was successfully updated.'
-#    else
-#      render :edit
-#    end
   end
 
   # DELETE /courses/1

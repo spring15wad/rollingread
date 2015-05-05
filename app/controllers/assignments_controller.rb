@@ -27,7 +27,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.new
     @assignment.course_id = params[:course_id]
     @course = Course.find(params[:course_id])
-#    @course = Course.where(id: params[:course_id]).take
+    @source = Source.find(params[:source_id])
   end
 
   # GET /assignments/1/edit
@@ -38,9 +38,14 @@ class AssignmentsController < ApplicationController
   # POST /assignments.json
   def create
     @assignment = Assignment.new(assignment_params)
+    @assignment.due_date = Date.parse(assignment_params[:due_date])
 
     if @assignment.save
-      redirect_to @assignment, notice: 'Assignment was successfully created.'
+      if !assignment_params[:flip]
+        redirect_to @assignment, notice: 'Assignment was successfully created.'
+      else
+        # I have no idea
+      end
     else
       render :new
     end
@@ -74,6 +79,6 @@ class AssignmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assignment_params
-      params.require(:assignment).permit(:short_assignment, :assignment_details, :url, :due_date, :completed, :source_id)
+      params.require(:assignment).permit(:short_assignment, :assignment_details, :due_date, :completed, :source_id, :course_id)
     end
 end

@@ -6,7 +6,7 @@
       %th Source
       %th Short assignment
       %th Assignment details
-      %th Url
+      %th Course
       %th Due date
       %th Completed
       %th
@@ -16,14 +16,14 @@
   %tbody
     - @assignments.each do |assignment|
       %tr
-        %td= assignment.source.short_source
+        %td= assignment.source_id
         %td= assignment.short_assignment
         %td= assignment.assignment_details
-        %td= assignment.url
+        %td= assignment.course_id
         %td= assignment.due_date
         %td= assignment.completed
         %td= link_to 'Show', assignment
-        %td= link_to 'Edit', edit_assignment_path(assignment)
+        %td= link_to 'Edit', edit_assignment_path(assignment, flip: false)
         %td= link_to 'Destroy', assignment, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
