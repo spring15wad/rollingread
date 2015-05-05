@@ -4,9 +4,13 @@ Rails.application.routes.draw do
 
   get '/task/cascade', to: 'task#cascade', as: 'cascade'
 
-  get '/flipless/:course_id', to: 'assignments#flipless',  as: 'assignment_for_course'
+  get 'semesters/new/:user_id', to: 'semesters#new', as: 'semester_in_user'
 
   get 'courses/new/:semester_id', to: 'courses#new', as: 'course_in_semester'
+
+  get 'sources/new/:course_id', to: 'sources#new', as: 'source_in_course'
+
+  get '/flipless/:course_id', to: 'assignments#flipless',  as: 'assignment_for_course'
 
   resources :assignments
 

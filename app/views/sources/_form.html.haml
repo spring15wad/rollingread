@@ -6,16 +6,17 @@
         - @source.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.collection_select :course_id, Course.order('short_course'), :id, :short_course, prompt: true
+  - if !params[:course_id]
+    .field
+      = f.collection_select :course_id, Course.order('short_course'), :id, :short_course, prompt: true
+  - else
+    <input type="hidden" id="source_course_id" name="source[course_id]" value="#{params[:course_id]}" />
   .field
     = f.label :short_source
     = f.text_field :short_source
   .field
     = f.label :source_details
     = f.text_area :source_details
-  .field
-    = f.label :dummy
-    = f.check_box :dummy
+  <input type="hidden" id="assignment_due_date" name="source[many_assignments]" value="true" />
   .actions
     = f.submit 'Save'

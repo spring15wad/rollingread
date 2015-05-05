@@ -18,5 +18,6 @@
   .field
     = f.label :end_date
     = f.date_select :end_date
+  <input type="hidden" id="semester_user_id" name="semester[user_id]" value="#{params[:user_id]}" />
   .actions
     = f.submit 'Save'

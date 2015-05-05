@@ -9,6 +9,8 @@
   - if !params[:semester_id]
     .field
       = f.collection_select :semester_id, Semester.order('start_date'), :id, :short_semester, prompt: true
+  - else
+    <input type="hidden" id="course_semester_id" name="course[semester_id]" value="#{params[:semester_id]}" />
   .field
     = f.label :course_number
     = f.text_field :course_number

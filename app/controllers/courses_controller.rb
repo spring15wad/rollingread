@@ -16,7 +16,9 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
-    @course.semester_id = params[:semester_id]
+    if params[:semester_id]
+      @course.semester_id = params[:semester_id]
+    end
   end
 
   # GET /courses/1/edit

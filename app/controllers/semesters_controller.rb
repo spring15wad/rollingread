@@ -16,6 +16,7 @@ class SemestersController < ApplicationController
   # GET /semesters/new
   def new
     @semester = Semester.new
+    @semester.user_id = session[:user_id]
   end
 
   # GET /semesters/1/edit

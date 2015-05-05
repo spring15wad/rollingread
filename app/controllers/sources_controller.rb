@@ -17,6 +17,9 @@ class SourcesController < ApplicationController
   # GET /sources/new
   def new
     @source = Source.new
+    if params[:course_id]
+      @source.course_id = params[:course_id]
+    end
   end
 
   # GET /sources/1/edit
