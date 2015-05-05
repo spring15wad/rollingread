@@ -1,6 +1,13 @@
 class TaskController < ApplicationController
   def index
-    @assignments = Assignment.order('due_date')
-    @grouped_assignments = @assignments.group_by { |assignment| assignment.due_date }
+    if current_user.nil?
+      redirect_to '/auth/twitter'
+    else
+      @semesters = Semester.where(user_id: session[:user_id])
+      @courses = Course.where(semester: @semesters)
+      @assignments = Assignment.where(course: @courses)
+      @grouped_assignments = @assignments.group_by { |assignment| assignment.due_date }
+    end
   end
 end
+

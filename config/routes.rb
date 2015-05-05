@@ -4,8 +4,11 @@ Rails.application.routes.draw do
 
   get 'task/index'
 
-#  get '/flipless/:course_id', to: 'assignments#flipless',  as: 'assignment_for_course', defaults: { flip: true }
   get '/flipless/:course_id', to: 'assignments#flipless',  as: 'assignment_for_course'
+
+  get '/auth/:provider', to: lambda{|env| [404, {}, ["Not Found"]]}, as: 'login'
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy', as: 'logout'
 
   resources :assignments
 
@@ -14,6 +17,8 @@ Rails.application.routes.draw do
   resources :courses
 
   resources :semesters
+
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

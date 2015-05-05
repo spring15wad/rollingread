@@ -4,7 +4,9 @@ class SourcesController < ApplicationController
   # GET /sources
   # GET /sources.json
   def index
-    @sources = Source.all
+    @semesters = Semester.where(user_id: session[:user_id])
+    @courses = Course.where(semester: @semesters)
+    @sources = Source.where(course: @courses)
   end
 
   # GET /sources/1

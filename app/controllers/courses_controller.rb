@@ -4,7 +4,8 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @semesters = Semester.where(user_id: session[:user_id])
+    @courses = Course.where(semester: @semesters)
   end
 
   # GET /courses/1
