@@ -22,20 +22,22 @@
         - else
           - @these_courses_hash = @grouped_courses.select{|s,c| s == semester.id }
           - @these_courses_hash.each_value{|these_courses| @these_courses_array = these_courses}
-          - @these_courses_array.each do |curse|
+          - @these_courses_array.each do |course|
             %span.smurf Course Number
-            %span.frums= curse.course_number
+            %span.frums= course.course_number
             %span.smurf Abbrev.
-            %span.frums= curse.short_course
+            %span.frums= course.short_course
             %span.smurf Course title
-            %span.frums= curse.full_course
-            = link_to 'Add source', source_in_course_path(curse.id)
+            %span.frums= course.full_course
+            = link_to 'Add source', source_in_course_path(course.id)
+            - if !@grouped_sources.empty?
+              = link_to 'Add assignments', assignment_for_course_path(course.id, flip: true)
             .sources
               %h2 Sources
               - if @grouped_sources.empty?
                 %h3 You don't have any sources!
               - else
-                - @these_sources_hash = @grouped_sources.select{|s,c| s == curse.id }
+                - @these_sources_hash = @grouped_sources.select{|s,c| s == course.id }
                 - @these_sources_hash.each_value{|these_sources| @these_sources_array = these_sources}
                 - @these_sources_array.each do |source|
                   %span.smurf  Abbrev.
