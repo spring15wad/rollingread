@@ -26,7 +26,8 @@
       - if !@today_assignments_array.nil?
         - @today_assignments_array.each do |today_assignment|
           .assignments
-            - this_source = Source.find(id: today_assignment.source_id)
+            - this_source = Source.find(today_assignment.source_id)
+            Assignment: 
             %span.smurf  Source
             %span.frums= this_source.short_source
             %span.smurf  Summary
