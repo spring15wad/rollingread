@@ -20,11 +20,12 @@
           None
         - else      
           - @course.meet_days.each do |mday|
-            Date::DAYNAMES[mday]
+            = Date::DAYNAMES[mday.to_i]
+
+%section
+  = @source.short_source
+  - @due_dates = @course.all_days.to_a
+  = render partial: 'flipform', collection: @due_dates
 
 
-
-
-= render 'flipform'
-
-= link_to 'Back', assignments_path
+= link_to 'Back', :back

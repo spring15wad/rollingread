@@ -1,4 +1,10 @@
 = fields_for @assignment do |f|
+  \ –> 
+  = params[:course_id]
+  \ – 
+  = params[:source_id]
+  \ – 
+  = @due_dates[flipform_counter]
 
   - if !params[:flip]
     .field
