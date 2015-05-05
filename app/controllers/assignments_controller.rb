@@ -4,7 +4,9 @@ class AssignmentsController < ApplicationController
   # GET /assignments
   # GET /assignments.json
   def index
-    @assignments = Assignment.all
+    @semesters = Semester.where(user_id: session[:user_id])
+    @courses = Course.where(semester: @semesters)
+    @assignments = Assignment.where(course: @courses)
   end
 
   # GET /assignments/1

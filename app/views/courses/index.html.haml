@@ -3,7 +3,7 @@
 %table
   %thead
     %tr
-      %th Semester
+      %th Semester ID
       %th Course number
       %th Short course
       %th Full course
@@ -15,7 +15,7 @@
   %tbody
     - @courses.each do |course|
       %tr
-        %td= course.semester.short_semester
+        %td= course.semester_id
         %td= course.course_number
         %td= course.short_course
         %td= course.full_course

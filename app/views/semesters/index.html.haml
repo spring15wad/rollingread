@@ -7,6 +7,7 @@
       %th Full semester
       %th Start date
       %th End date
+      %th User ID
       %th
       %th
       %th
@@ -18,6 +19,7 @@
         %td= semester.full_semester
         %td= semester.start_date
         %td= semester.end_date
+        %td= semester.user_id
         %td= link_to 'Show', semester
         %td= link_to 'Edit', edit_semester_path(semester)
         %td= link_to 'Destroy', semester, :method => :delete, :data => { :confirm => 'Are you sure?' }

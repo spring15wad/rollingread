@@ -4,7 +4,8 @@ class SemestersController < ApplicationController
   # GET /semesters
   # GET /semesters.json
   def index
-    @semesters = Semester.all
+#    @semesters = Semester.all
+    @semesters = Semester.where(user_id: session[:user_id])
   end
 
   # GET /semesters/1
