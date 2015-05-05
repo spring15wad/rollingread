@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'task#index', as: 'task'
 
-  get '/task/cascade', to: 'task#cascade', as: 'cascade'
+  get 'cascade', to: 'task#cascade', as: 'cascade'
 
   get 'semesters/new/:user_id', to: 'semesters#new', as: 'semester_in_user'
 
