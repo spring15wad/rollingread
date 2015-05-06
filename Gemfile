@@ -78,3 +78,4 @@ gem 'omniauth'
 # Use the Twitter strategy so that users log in with Twitter accounts
 gem 'omniauth-twitter'
 
+ruby "2.2.0"
