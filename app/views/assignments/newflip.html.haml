@@ -1,0 +1,22 @@
+= form_for @assignment do |f|
+
+  <input type="hidden" id="assignment_course_id" name="assignment[course_id]" value="#{params[:course_id]}" />
+  <input type="hidden" id="assignment_source_id" name="assignment[source_id]" value="#{params[:source_id]}" />
+  <input type="hidden" id="assignment_due_date"  name="assignment[due_date]"  value="#{params[:due_date]}" />
+  - @source = Source.find(params[:source_id])
+  %h3= Date.parse(params[:due_date])
+  - if @assignment.source_id == Source.where(short_source: 'single_use').take
+    .field
+      = label(:assignment, :short_assignment, "Source ID / URL")
+      = f.text_field :short_assignment
+  - else
+    = @source.short_source
+    .field
+      = label(:assignment, :short_assignment, "Summary of assignment")
+      = f.text_field :short_assignment
+  .field
+    = label(:assignment, :assignment_details, "Details of assignment")
+    = f.text_area :assignment_details
+  .actions
+    = f.submit 'Save'
+
