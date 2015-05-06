@@ -1,5 +1,6 @@
 User.create!([
-  {username: "mfreema55", provider: "twitter", uid: "2774519113"}
+  {username: "mfreema55", provider: "twitter", uid: "2774519113"},
+  {username: "", provider: "", uid: ""}
 ])
 Semester.create!([
   {short_semester: "S15", full_semester: "Spring 15", start_date: "2015-01-12", end_date: "2015-05-02", user_id: 1},
