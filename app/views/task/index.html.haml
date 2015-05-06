@@ -13,11 +13,13 @@
             %p.tasklist#completed
               = label_tag('Completed') 
               = check_box_tag('completed', value = "true", checked = g_assignment.completed, disabled: true )
+  %nav
+    = link_to('Add semesters, courses, etc.', cascade_path )
+
 - else
   %section
     Please login: 
     = link_to 'Login with Twitter', '/auth/twitter'
 
-= render 'shared/nav_footer'
 
 

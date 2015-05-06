@@ -49,7 +49,7 @@ class AssignmentsController < ApplicationController
     @assignment.due_date = Date.parse(assignment_params[:due_date])
 
     if @assignment.save
-      redirect_to assignment_for_course_path(assignment.course_id), notice: 'Assignment was successfully created.'
+      redirect_to assignment_for_course_path(@assignment.course_id), notice: 'Assignment was successfully created.'
     else
       render :new
     end
