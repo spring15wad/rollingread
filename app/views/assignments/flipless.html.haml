@@ -1,31 +1,43 @@
-%h1 Create your course assignments
+.flipless
+  .courses
+    %span.smurf  Course Number
+    %span.frums= @course.course_number
+    %span.smurf  Abbrev.
+    %span.frums= @course.short_course
+    %span.smurf  Course title
+    %span.frums= @course.full_course
+    - if !@course.meet_days.blank?
+      - @course.meet_days.each do |mday|
+        %span.smurf  Meets: 
+        %span.frums= Date::DAYNAMES[mday.to_i]
+  .sources
+    - @sources.each do |source|
+      %span.smurf  Abbrev.
+      %span.frums= source.short_source
 
-%table
-  %thead
-    %tr
-      %th In semester
-      %th Course number
-      %th Course abbrev.
-      %th Full title
-      %th Meets on
-      
-  %tbody
-    %tr
-      %td= @course.semester.short_semester
-      %td= @course.course_number
-      %td= @course.short_course
-      %td= @course.full_course
-      %td
-        - if @course.meet_days.blank?
-          None
-        - else      
-          - @course.meet_days.each do |mday|
-            = Date::DAYNAMES[mday.to_i]
-
-%section
-  = @source.short_source
+.flipless
+  %h2 Assignments
   - @due_dates = @course.all_days.to_a
-  = render partial: 'flipform', collection: @due_dates
-
+  - @due_dates.each do |due_date|
+    .dates
+      = Date.parse(due_date)
+      - @today_assignments_hash = @grouped_assignments.select{|d,a| d == Date.parse(due_date) }
+      - @today_assignments_hash.each_value{|today_assignments| @today_assignments_array = today_assignments}
+      - if !@today_assignments_array.nil?
+        - @today_assignments_array.each do |today_assignment|
+          .assignments
+            - this_source = Source.find(today_assignment.source_id)
+            Assignment: 
+            %span.smurf  Source
+            %span.frums= this_source.short_source
+            %span.smurf  Summary
+            %span.frums= today_assignment.short_assignment
+            %span.smurf  Details
+            %span.frums= today_assignment.assignment_details
+            %span.smurf  Done
+            %span.frums= today_assignment.completed
+      Add assignment for source…
+      - @sources.each do |source|
+        =link_to(source.short_source, newflip_path(source_id: source.id, course_id: @course.id, due_date: Date.parse(due_date)) )
 
 = link_to 'Back', :back

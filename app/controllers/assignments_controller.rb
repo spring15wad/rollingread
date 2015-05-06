@@ -19,6 +19,12 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.new
   end
 
+  # GET /assignments/newflip
+  def newflip
+    @assignment = Assignment.new                                                      # <-- note singular
+    @assignment.course_id = params[:course_id]
+  end
+
   # GET /flipless/:course_id
   def flipless
     if Source.where(short_source: 'single_use').empty?
@@ -26,10 +32,10 @@ class AssignmentsController < ApplicationController
       @single_use_source.save
     end
 
-    @assignment = Assignment.new
-    @assignment.course_id = params[:course_id]
     @course = Course.find(params[:course_id])
-    @source = Source.find(params[:source_id])
+    @sources = Source.where(course: params[:course_id])
+    @assignments = Assignment.where(course_id: params[:course_id])                    # <-- note plural
+    @grouped_assignments = @assignments.group_by { |assignment| assignment.due_date }
   end
 
   # GET /assignments/1/edit
@@ -43,11 +49,7 @@ class AssignmentsController < ApplicationController
     @assignment.due_date = Date.parse(assignment_params[:due_date])
 
     if @assignment.save
-      if !assignment_params[:flip]
-        redirect_to @assignment, notice: 'Assignment was successfully created.'
-      else
-        # I have no idea
-      end
+      redirect_to assignment_for_course_path(assignment.course_id), notice: 'Assignment was successfully created.'
     else
       render :new
     end

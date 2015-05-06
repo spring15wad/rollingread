@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   get 'sources/new/:course_id', to: 'sources#new', as: 'source_in_course'
 
-  get '/flipless/:course_id', to: 'assignments#flipless',  as: 'assignment_for_course'
+  get 'assignments/flipless/:course_id', to: 'assignments#flipless',  as: 'assignment_for_course'
+
+  get 'assignments/newflip', to: 'assignments#newflip',  as: 'newflip'
 
   resources :assignments
 
