@@ -37,6 +37,41 @@ span.frums {
   color: #4B088A;
 }
 
+.semesters {
+  border: 1px solid #C096AB;
+  border-radius: 1em;
+  margin: 0.375em 0.0625em 0.375em -0.375em; 
+  padding: 0.375em;  
+}
+
+.courses {
+  border: 1px solid #C096AB;
+  border-radius: 1em;
+  padding: 0.125em 0.125em 0.125em 0.375em;
+}
+
+.sources {
+  border: 1px solid #E7B8CF;
+  border-radius: 1em;
+  padding: 0.125em;
+}
+
+
+.flipless{
+  border: 2px solid #C096AB;
+  border-radius: 1em;
+  padding: 0.375em;
+}
+
+.dates {
+  border: 1px solid #E7B8CF;
+  border-radius: 0.625em;
+  padding: 0.250em;
+}
+
+.sources span.smurf {
+  margin: 0 0 0 0.875em; 
+}
 
 
 pre {
@@ -46,6 +81,7 @@ pre {
 }
 
 a {
+  margin: 0 0.5em;
   color: #000;
   &:visited {
     color: #666;

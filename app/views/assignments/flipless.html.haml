@@ -11,6 +11,7 @@
         %span.smurf  Meets: 
         %span.frums= Date::DAYNAMES[mday.to_i]
   .sources
+    Sources
     - @sources.each do |source|
       %span.smurf  Abbrev.
       %span.frums= source.short_source
@@ -34,8 +35,9 @@
             %span.frums= today_assignment.short_assignment
             %span.smurf  Details
             %span.frums= today_assignment.assignment_details
-            %span.smurf  Done
-            %span.frums= today_assignment.completed
+            %span.smurf
+              - if today_assignment.completed
+                Done
       Add assignment for source…
       - @sources.each do |source|
         =link_to(source.short_source, newflip_path(source_id: source.id, course_id: @course.id, due_date: Date.parse(due_date)) )
